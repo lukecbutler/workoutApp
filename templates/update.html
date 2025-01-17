@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Workout</title>
+</head>
+<body>
+    <h1>Update Workout</h1>
+    <form method="post">
+        <label for="exercise">Exercise:</label><br>
+        <input type="text" id="exercise" name="exercise" value="{{ workout['exercise'] }}" required><br><br>
+        
+        <label for="sets">Sets:</label><br>
+        <input type="number" id="sets" name="sets" value="{{ workout['sets'] }}"><br><br>
+        
+        <label for="reps">Reps:</label><br>
+        <input type="number" id="reps" name="reps" value="{{ workout['reps'] }}"><br><br>
+        
+        <label for="weight">Weight:</label><br>
+        <input type="number" step="0.1" id="weight" name="weight" value="{{ workout['weight'] }}"><br><br>
+        
+        <label for="duration">Duration (minutes):</label><br>
+        <input type="number" step="0.1" id="duration" name="duration" value="{{ workout['duration'] }}"><br><br>
+        
+        <button type="submit">Update Workout</button>
+    </form>
+    <a href="/day/{{ date }}">Back to Workouts</a>
+</body>
+</html>

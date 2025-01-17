@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercises for {{ date }}</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 2rem;
+        }
+        .workouts, .add-exercise {
+            flex: 1;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercises for {{ date }}</h1>
+    <div class="container">
+        <!-- Workout Table -->
+        <div class="workouts">
+            <h2>Logged Exercises</h2>
+            <table>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Weight</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                </tr>
+                {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout["exercise"] }}</td>
+                    <td>{{ workout["sets"] }}</td>
+                    <td>{{ workout["reps"] }}</td>
+                    <td>{{ workout["weight"] }}</td>
+                    <td>{{ workout["duration"] }}</td>
+                    <td>
+                        <form method="post" action="/delete/{{ workout['id'] }}/{{ date }}" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form method="get" action="/update/{{ workout['id'] }}/{{ date }}" style="display:inline;">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- Add Exercise Form -->
+        <div class="add-exercise">
+            <h2>Add Exercise</h2>
+            <form method="post">
+                <label for="exercise">Exercise:</label><br>
+                <input type="text" id="exercise" name="exercise" required><br><br>
+
+                <label for="sets">Sets:</label><br>
+                <input type="number" id="sets" name="sets"><br><br>
+
+                <label for="reps">Reps:</label><br>
+                <input type="number" id="reps" name="reps"><br><br>
+
+                <label for="weight">Weight:</label><br>
+                <input type="number" step="0.1" id="weight" name="weight"><br><br>
+
+                <label for="duration">Duration (minutes):</label><br>
+                <input type="number" step="0.1" id="duration" name="duration"><br><br>
+
+                <button type="submit">Add Exercise</button>
+            </form>
+        </div>
+    </div>
+    <a href="/">Back to Days</a>
+</body>
+</html>

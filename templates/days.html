@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Days</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Workout Days</h1>
+
+        <!-- Form to add a new day -->
+        <form method="post">
+            <div class="form-group">
+                <label for="date">Create a New Day:</label><br>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <button type="submit">Add Day</button>
+        </form>
+
+        <!-- List of workout days -->
+        <ul>
+            {% for day in days %}
+            <li><a href="/day/{{ day['date'] }}">{{ day['date'] }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
