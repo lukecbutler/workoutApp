@@ -7,11 +7,7 @@ app = Flask(__name__)
 # Database connection
 DATABASE = "workouts.db"
 
-def get_db_connection():
-    conn = sqlite3.connect(DATABASE)
-    conn.row_factory = sqlite3.Row
-    return conn
-
+d
 # Function to initialize the database
 def initialize_db():
     conn = get_db_connection()
