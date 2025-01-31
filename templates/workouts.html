@@ -1,86 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercises for {{ date }}</title>
-    <style>
-        .container {
-            display: flex;
-            gap: 2rem;
-        }
-        .workouts, .add-exercise {
-            flex: 1;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Exercises for {{ date }}</h1>
-    <div class="container">
-        <!-- Workout Table -->
-        <div class="workouts">
-            <h2>Logged Exercises</h2>
-            <table>
-                <tr>
-                    <th>Exercise</th>
-                    <th>Sets</th>
-                    <th>Reps</th>
-                    <th>Weight</th>
-                    <th>Duration</th>
-                    <th>Actions</th>
-                </tr>
-                {% for workout in workouts %}
-                <tr>
-                    <td>{{ workout["exercise"] }}</td>
-                    <td>{{ workout["sets"] }}</td>
-                    <td>{{ workout["reps"] }}</td>
-                    <td>{{ workout["weight"] }}</td>
-                    <td>{{ workout["duration"] }}</td>
-                    <td>
-                        <form method="post" action="/delete/{{ workout['id'] }}/{{ date }}" style="display:inline;">
-                            <button type="submit">Delete</button>
-                        </form>
-                        <form method="get" action="/update/{{ workout['id'] }}/{{ date }}" style="display:inline;">
-                            <button type="submit">Update</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+<body class="bg-light">
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Exercises for {{ date }}</h1>
+
+        <div class="row">
+            <!-- Workout Table -->
+            <div class="col-md-7">
+                <div class="card shadow-sm p-3">
+                    <h2 class="text-center">Logged Exercises</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Exercise</th>
+                                    <th>Sets</th>
+                                    <th>Reps</th>
+                                    <th>Weight</th>
+                                    <th>Duration</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for workout in workouts %}
+                                <tr>
+                                    <td>{{ workout["exercise"] }}</td>
+                                    <td>{{ workout["sets"] }}</td>
+                                    <td>{{ workout["reps"] }}</td>
+                                    <td>{{ workout["weight"] }}</td>
+                                    <td>{{ workout["duration"] }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <form method="post" action="/delete/{{ workout['id'] }}/{{ date }}">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                            <form method="get" action="/update/{{ workout['id'] }}/{{ date }}">
+                                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Exercise Form -->
+            <div class="col-md-5">
+                <div class="card shadow-sm p-3">
+                    <h2 class="text-center">Add Exercise</h2>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="exercise" class="form-label">Exercise:</label>
+                            <input type="text" class="form-control" id="exercise" name="exercise" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sets" class="form-label">Sets:</label>
+                            <input type="number" class="form-control" id="sets" name="sets">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="reps" class="form-label">Reps:</label>
+                            <input type="number" class="form-control" id="reps" name="reps">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="weight" class="form-label">Weight:</label>
+                            <input type="number" step="0.1" class="form-control" id="weight" name="weight">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration (miles):</label>
+                            <input type="number" step="0.1" class="form-control" id="duration" name="duration">
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Add Exercise</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <!-- Add Exercise Form -->
-        <div class="add-exercise">
-            <h2>Add Exercise</h2>
-            <form method="post">
-                <label for="exercise">Exercise:</label><br>
-                <input type="text" id="exercise" name="exercise" required><br><br>
-
-                <label for="sets">Sets:</label><br>
-                <input type="number" id="sets" name="sets"><br><br>
-
-                <label for="reps">Reps:</label><br>
-                <input type="number" id="reps" name="reps"><br><br>
-
-                <label for="weight">Weight:</label><br>
-                <input type="number" step="0.1" id="weight" name="weight"><br><br>
-
-                <label for="duration">Duration (minutes):</label><br>
-                <input type="number" step="0.1" id="duration" name="duration"><br><br>
-
-                <button type="submit">Add Exercise</button>
-            </form>
+        <!-- Back Button -->
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-secondary">Back to Days</a>
         </div>
     </div>
-    <a href="/">Back to Days</a>
+
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

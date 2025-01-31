@@ -1,74 +1,98 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Lift schedule for 1/31</title>
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Schedule for 1/25</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .schedule-table th, .schedule-table td {
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .rec-closed {
+            background-color: lime !important;
+        }
+        .rest-day {
+            background-color: red !important;
+        }
+        .highlight-day {
+            background-color: aliceblue !important;
+        }
+    </style>
+</head>
+<body class="bg-light">
 
-    <h3 style="text-align: center;">Workouts</h3>
+    <div class="container mt-4">
+        <h3 class="text-center">Workouts</h3>
 
-    <table align="center" border="2" style="background-color: black;">
-        <tr align="center" style="background-color: aliceblue;">
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-        </tr>
-    <!-- Week 1 -->
-        <tr align="center" style="background-color: aliceblue;">
-            <td><b>13. </b>Squat: 5x5 @ 155</td>
-            <td style="background-color: lime;"><b>14. </b>DeadLift: 5x5 @ 185</td>
-            <td style="background-color: lime;"><b>15. </b>Bench: 5x5 @ 155</td>
-            <td style="background-color: lime;"><b>16. </b>Squat: 5x5 @ 155</td>
-            <td style="background-color: lime;"><b>17. </b>DeadLift: 5x5 @ 185</td>
-            <td style="background-color: lime;"><b>18. </b>REC CLOSED</td>
-            <td style="background-color: lime;"><b>19. </b>Rest</td>
-        </tr>
-    <!-- Week 2 -->
-        <tr align="center" style="background-color: aliceblue;">
-            <td style="background-color: lime;"><b>20. </b>REC CLOSED</td>
-            <td style="background-color: lime;"><b>21. </b>Squat: 3x3 @ 175</td>
-            <td style="background-color: lime;"><b>22. </b>DeadLift: 5x3 @ 205</td>
-            <td style="background-color: lime;"><b>23. </b>REC CLOSED</td>
-            <td style="background-color: lime;"><b>24. </b>REC CLOSED</td>
-            <td style="background-color: lime;"><b>25. </b>Squat: 5x5 @ 185</td>
-            <td style="background-color: red;"><b>26. </b>DeadLift: 5x3 @ 205</td>
-        </tr>
-    <!-- Week 3 -->
-        <tr align="center" style="background-color: aliceblue;">
-            <td style="background-color: lime;"><b>27. </b>DeadLift: 5x3 @ 205</td>
-            <td style="background-color: red;"><b>28. </b>Bench: 5x5 @ 165</td>
-            <td style="background-color: lime;"><b>29. </b>Squat: 4x4 @ 185</td>
-            <td style="background-color: lime;"><b>30. </b>Rest</td>
-            <td style="background-color: lime;"><b>31. </b>D: 225 ; B: 185 ; S: 205</td>
-        </tr>
+        <!-- Lift Schedule Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped schedule-table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                        <th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Week 1 -->
+                    <tr class="highlight-day">
+                        <td><b>13.</b> Squat: 5x5 @ 155</td>
+                        <td class="rec-closed"><b>14.</b> Deadlift: 5x5 @ 185</td>
+                        <td class="rec-closed"><b>15.</b> Bench: 5x5 @ 155</td>
+                        <td class="rec-closed"><b>16.</b> Squat: 5x5 @ 155</td>
+                        <td class="rec-closed"><b>17.</b> Deadlift: 5x5 @ 185</td>
+                        <td class="rec-closed"><b>18.</b> REC CLOSED</td>
+                        <td class="rec-closed"><b>19.</b> Rest</td>
+                    </tr>
+                    <!-- Week 2 -->
+                    <tr class="highlight-day">
+                        <td class="rec-closed"><b>20.</b> REC CLOSED</td>
+                        <td class="rec-closed"><b>21.</b> Squat: 3x3 @ 175</td>
+                        <td class="rec-closed"><b>22.</b> Deadlift: 5x3 @ 205</td>
+                        <td class="rec-closed"><b>23.</b> REC CLOSED</td>
+                        <td class="rec-closed"><b>24.</b> REC CLOSED</td>
+                        <td class="rec-closed"><b>25.</b> Squat: 5x5 @ 185</td>
+                        <td class="rest-day"><b>26.</b> Deadlift: 5x3 @ 205</td>
+                    </tr>
+                    <!-- Week 3 -->
+                    <tr class="highlight-day">
+                        <td class="rec-closed"><b>27.</b> Deadlift: 5x3 @ 205</td>
+                        <td class="rest-day"><b>28.</b> Bench: 5x5 @ 165</td>
+                        <td class="rec-closed"><b>29.</b> Squat: 4x4 @ 185</td>
+                        <td class="rec-closed"><b>30.</b> Rest</td>
+                        <td class="rec-closed"><b>31.</b> D: 225 ; B: 185 ; S: 205</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <!-- Max Out Stats -->
+        <div class="card shadow-sm p-3 mt-4">
+            <h4 class="text-center">Max Out Stats</h4>
+            <ul class="list-group">
+                <li class="list-group-item">Deadlift: 4 reps @ 225</li>
+                <li class="list-group-item">Squat: 2 reps @ 205</li>
+                <li class="list-group-item">Bench: 2 reps @ 185</li>
+            </ul>
+        </div>
 
-
-    </table>
-
-    <h4>
-        Max out stats:
-    </h4>
-    <ul>
-        <li>
-            Deadlift: 4 reps @ 225
-        </li>
-        <li>
-            Squat: 2 reps @ 205
-        </li>
-        <li>
-            Bench: 2 reps @ 185
-        </li>
-    </ul>
-    
-    <a href='/'>
-    <div>
-        Back to Workouts
+        <!-- Back Button -->
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-secondary">Back to Workouts</a>
+        </div>
     </div>
-    </a>
-    </body>
+
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>

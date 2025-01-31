@@ -1,55 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Days</title>
-    <style>
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Workout Days</h1>
+<body class="bg-light">
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Workout Days</h1>
 
         <!-- Form to add a new day -->
-        <form method="post">
-            <div class="form-group">
-                <label for="date">Create a New Day:</label><br>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <button type="submit">Add Day</button>
-        </form>
+        <div class="card shadow-sm p-4">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="date" class="form-label">Create a New Day:</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Add Day</button>
+                </div>
+            </form>
+        </div>
 
         <!-- List of workout days -->
-        <ul>
-            {% for day in days %}
-            <li><a href="/day/{{ day['date'] }}">{{ day['date'] }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="card shadow-sm mt-4 p-3">
+            <h2 class="text-center">Saved Workouts</h2>
+            <ul class="list-group">
+                {% for day in days %}
+                <li class="list-group-item text-center">
+                    <a href="/day/{{ day['date'] }}" class="text-decoration-none">{{ day['date'] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Additional Links -->
+        <div class="text-center mt-4">
+            <a href="/liftingSchedule2025" class="btn btn-outline-primary d-block mb-2">Lift Schedule 2025</a>
+            <a href="/janurary25" class="btn btn-outline-primary d-block mb-2">Workout Schedule 1/25</a>
+            <a href="/feburary25" class="btn btn-outline-primary d-block">Workout Schedule 2/25</a>
+        </div>
+        <br><br><br>
     </div>
 
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <a href="/liftingSchedule2025">
-        <div>
-            Lift Schedule 2025
-        </div>
-    </a>
-
-    <a href="/janurary25">
-        <div>
-            Workout Schedule 1/25
-        </div>
-    </a>
-
-    <a href="/feburary25">
-        <div>
-            Workout Schedule 2/25
-        </div>
-    </a>
 </body>
 </html>
