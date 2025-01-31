@@ -4,10 +4,16 @@ import sqlite3
 # Initialize Flask app
 app = Flask(__name__)
 
+
+
 # Database connection
 DATABASE = "workouts.db"
 
-d
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 # Function to initialize the database
 def initialize_db():
     conn = get_db_connection()
@@ -87,6 +93,23 @@ def update_workout(id, date):
         return redirect(url_for("view_workouts_by_day", date=date))
     conn.close()
     return render_template("update.html", workout=workout, date=date)
+
+@app.route("/liftingSchedule2025", methods=["GET", "POST"])
+def liftingSchedule2025():
+    return render_template("liftingSchedule2025.html")
+
+
+# Route: View workout timeline for 1/25
+@app.route("/janurary25", methods=["GET", "POST"])
+def janurary2025():
+    return render_template("janurary2025.html")
+
+# Route: View workout timeline for 2/25
+@app.route("/feburary25", methods=["GET", "POST"])
+def feburary2025():
+    return render_template("feburary2025.html")
+
+
 
 # Main function
 if __name__ == "__main__":
