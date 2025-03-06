@@ -5,7 +5,6 @@ import sqlite3
 app = Flask(__name__)
 
 
-
 # Database connection
 DATABASE = "workouts.db"
 
@@ -14,35 +13,18 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-# Function to initialize the database
-def initialize_db():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Workouts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date TEXT NOT NULL,
-            exercise TEXT NOT NULL,
-            sets INTEGER,
-            reps INTEGER,
-            weight REAL,
-            duration REAL
-        )
-    ''')
-    conn.commit()
-    conn.close()
-
 # Route: View all workout days and add a new day
 @app.route("/", methods=["GET", "POST"])
 def view_days():
     conn = get_db_connection()
     if request.method == "POST":
         date = request.form["date"]
+        print(date)
         conn.close()
         return redirect(url_for("view_workouts_by_day", date=date))
     days = conn.execute("SELECT DISTINCT date FROM Workouts ORDER BY date DESC").fetchall()
     conn.close()
-    return render_template("days.html", days=days)
+    return render_template("mainpage.html", days=days)
 
 # Route: View workouts for a specific day
 @app.route("/day/<date>", methods=["GET", "POST"])
@@ -60,6 +42,7 @@ def view_workouts_by_day(date):
         ''', (date, exercise, sets, reps, weight, duration))
         conn.commit()
     workouts = conn.execute("SELECT * FROM Workouts WHERE date = ?", (date,)).fetchall()
+    print(workouts)
     conn.close()
     return render_template("workouts.html", date=date, workouts=workouts)
 
@@ -113,5 +96,4 @@ def feburary2025():
 
 # Main function
 if __name__ == "__main__":
-    initialize_db()
-    app.run(debug=True, port=80, host="0.0.0.0")
+    app.run(debug=True)
