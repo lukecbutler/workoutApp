@@ -24,7 +24,8 @@ def view_days():
         return redirect(url_for("view_workouts_by_day", date=date))
     days = conn.execute("SELECT DISTINCT date FROM Workouts ORDER BY date DESC").fetchall()
     conn.close()
-    return render_template("mainpage.html", days=days)
+
+    return render_template("mainpage.html", days = days)
 
 # Route: View workouts for a specific day
 @app.route("/day/<date>", methods=["GET", "POST"])
@@ -42,7 +43,6 @@ def view_workouts_by_day(date):
         ''', (date, exercise, sets, reps, weight, duration))
         conn.commit()
     workouts = conn.execute("SELECT * FROM Workouts WHERE date = ?", (date,)).fetchall()
-    print(workouts)
     conn.close()
     return render_template("workouts.html", date=date, workouts=workouts)
 
@@ -92,7 +92,10 @@ def janurary2025():
 def feburary2025():
     return render_template("feburary2025.html")
 
-
+# Route: View workout timeline for 3/25
+@app.route("/march25", methods=["GET", "POST"])
+def march2025():
+    return render_template("march2025.html")
 
 # Main function
 if __name__ == "__main__":
