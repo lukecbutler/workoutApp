@@ -4,7 +4,6 @@ import sqlite3
 # Initialize Flask app
 app = Flask(__name__)
 
-
 # Database connection
 DATABASE = "workouts.db"
 
@@ -77,6 +76,8 @@ def update_workout(id, date):
     conn.close()
     return render_template("update.html", workout=workout, date=date)
 
+
+# Route: View workout timeline for 2025
 @app.route("/liftingSchedule2025", methods=["GET", "POST"])
 def liftingSchedule2025():
     return render_template("liftingSchedule2025.html")
